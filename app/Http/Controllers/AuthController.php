@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -46,14 +47,14 @@ class AuthController extends Controller
             ->first();
         if (!$user) {
             return back()->withInput()->with([
-                'invalide_login' => 'Login inválido.'
+                'invalid_login' => 'Login inválido.'
             ]);
         }
          
         // verify if the password is valid
         if(!password_verify($credentials['password'], $user->password)){
             return back()->withInput()->with([
-                'invalide_login' => 'Login inválido.'
+                'invalid_login' => 'Login inválido.'
             ]);
         }
 
@@ -70,5 +71,10 @@ class AuthController extends Controller
         return redirect()->intended(route('home'));
 
 
+    }
+
+    public function logout() : RedirectResponse {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
