@@ -31,7 +31,7 @@
                                     <a href="{{ route('register') }}">Não tenho conta de usuário</a>
                                 </div>
                                 <div>
-                                    <a href="#">Esqueci a minha senha</a>
+                                    <a href="{{ route('forgot_password') }}">Esqueci a minha senha</a>
                                 </div>
                             </div>
                             <div class="col text-end align-self-center">
@@ -45,6 +45,12 @@
                         <div class="alert alert-danger text-center mt-4">
                             {{ session('invalid_login') }}
                         </div>
+                    @endif
+
+                    @if (session('success'))
+                        <p class="mt-3 alert alert-primary text-center mt-4">
+                            Sua senha foi redefinida com sucesso
+                        </p>
                     @endif
 
                 </div>
