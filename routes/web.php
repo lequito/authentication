@@ -17,6 +17,10 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('/', [MainController::class, 'home'])->name('home');
+    //profile change password
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+    Route::post('/profile', [AuthController::class, 'changePassword'])->name('change-password');
+    //logout
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
