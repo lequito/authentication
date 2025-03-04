@@ -52,6 +52,24 @@
                     </div>
                 @endif
 
+                <hr>
+
+                <div class="card border-1 border-danger p-5 text-center">
+                    Para remover permanentemente sua conta de Usuário no sistema digite o texto "ELIMINAR" no campo abaixo.
+                
+
+                    <form action="{{ route('delete_account')}}" method="post">
+                        @csrf
+
+                        <div class="my-3">
+                            <input type="text" name="delete_confirmation" class="form-control text-center mt-3" placeholder="Digite a palavra aqui!">
+                            @error('delete_confirmation')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-danger">EXCLUIR CONTA</button>
+                    </form> 
+                </div>
         </div>
     </div>
 </div>

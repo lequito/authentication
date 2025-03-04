@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/profile', [AuthController::class, 'changePassword'])->name('change-password');
     //logout
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    //delete account
+    Route::post('/delete_account', [AuthController::class, 'deleteAccount'])->name('delete_account');
 });
 
 

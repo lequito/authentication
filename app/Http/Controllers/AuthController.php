@@ -301,4 +301,28 @@ class AuthController extends Controller
         ]);
 
     }
+
+    public function deleteAccount(Request $request): RedirectResponse{
+        //form validate
+        $request->validate(
+            [
+                'delete_confirmation' => 'required|in:ELIMINAR'
+            ],
+            [
+                'delete_confirmation.required' => 'A confirmação é obrigatória',
+                'delete_confirmation.in' => 'A palavre ELIMINAR é obrigatória para sucesso na operação'
+            ]
+        );
+
+        //remove user account
+        $user = Auth::user();
+        $user->delete();
+
+        //logout
+        Auth::logout();
+
+        //redirect
+        return redirect()->route('login')->with(['account_deleted' => true]);
+
+    }
 }
